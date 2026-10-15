@@ -1,0 +1,23 @@
+{
+  "name": "mergeassist",
+  "version": "1.0.0",
+  "description": "KI-gestuetztes Zusammenfuehren von Projektstaenden (Ollama, offline)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "diff": "^5.2.0",
+    "node-diff3": "^2.1.2"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "local.mergeassist",
+    "productName": "MergeAssist",
+    "files": ["main.js", "preload.js", "lib/**", "renderer/**"]
+  }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+<title>MergeAssist</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">MergeAssist</div>
+  <nav>
+    <button class="tab active" data-view="merge" data-i18n="tabMerge"></button>
+    <button class="tab" data-view="settings" data-i18n="tabSettings"></button>
+  </nav>
+  <div id="aiStatus" class="ai"><span class="dot"></span><span id="aiText"></span></div>
+</header>
+<main>
+  <section id="view-merge" class="view">
+    <div id="setup" class="card">
+      <h2 data-i18n="setupTitle"></h2>
+      <p class="muted" data-i18n="setupHint"></p>
+      <div class="form">
+        <label data-i18n="folderA"></label>
+        <div class="pick"><input id="p-a" readonly><button class="btn" data-pick="a" data-i18n="browse"></button></div>
+        <label data-i18n="folderB"></label>
+        <div class="pick"><input id="p-b" readonly><button class="btn" data-pick="b" data-i18n="browse"></button></div>
+        <label data-i18n="folderBase"></label>
+        <div class="pick"><input id="p-base" readonly><button class="btn" data-pick="base" data-i18n="browse"></button></div>
+        <label data-i18n="folderOut"></label>
+        <div class="pick"><input id="p-out" readonly><button class="btn" data-pick="out" data-i18n="browse"></button></div>
+        <label data-i18n="notesA"></label>
+        <textarea id="n-a" rows="2" data-i18n-ph="notesPh"></textarea>
+        <label data-i18n="notesB"></label>
+        <textarea id="n-b" rows="2" data-i18n-ph="notesPh"></textarea>
+      </div>
+      <div class="actions"><button id="compareBtn" class="btn primary" data-i18n="compare"></button><span id="setupMsg" class="msg"></span></div>
+    </div>
+    <div id="workspace" hidden>
+      <aside>
+        <div id="summary"></div>
+        <div id="sideTools">
+          <input id="sf-q" data-i18n-ph="search">
+          <div class="toolrow"><select id="sf-filter"></select>
+            <div class="seg"><button id="m-list" class="btn small active" data-i18n="modeList"></button><button id="m-tree" class="btn small" data-i18n="modeTree"></button></div></div>
+        </div>
+        <div id="fileList"></div>
+      </aside>
+      <div id="detail"></div>
+    </div>
+    <footer id="bar" hidden><span id="barInfo"></span><span id="barMsg" class="msg"></span>
+      <button id="stopBtn" class="btn" hidden data-i18n="stop"></button>
+      <button id="reportBtn" class="btn" data-i18n="report"></button>
+      <button id="allBtn" class="btn" data-i18n="mergeAll"></button>
+      <button id="writeBtn" class="btn primary" data-i18n="write"></button></footer>
+  </section>
+
+  <section id="view-settings" class="view" hidden>
+    <div class="card narrow">
+      <h2 data-i18n="tabSettings"></h2>
+      <div class="form">
+        <label data-i18n="language"></label>
+        <select id="s-lang"><option value="de">Deutsch</option><option value="en">English</option></select>
+        <label data-i18n="host"></label>
+        <input id="s-host" placeholder="192.168.0.10">
+        <label data-i18n="port"></label>
+        <input id="s-port" type="number" min="1" max="65535">
+        <label data-i18n="model"></label>
+        <div class="pick"><input id="s-model" list="modelList"><datalist id="modelList"></datalist><button id="s-load" class="btn" data-i18n="loadModels"></button></div>
+        <label data-i18n="retries"></label>
+        <input id="s-retries" type="number" min="0" max="10">
+        <label data-i18n="timeout"></label>
+        <input id="s-timeout" type="number" min="10" max="3600">
+        <label data-i18n="preferLabel"></label>
+        <select id="s-prefer"><option value="a" data-i18n="preferA"></option><option value="b" data-i18n="preferB"></option><option value="auto" data-i18n="preferAuto"></option></select>
+        <span></span><span class="muted small" data-i18n="preferHint"></span>
+        <label data-i18n="fallbackLabel"></label>
+        <label class="chk"><input id="s-fallback" type="checkbox"><span data-i18n="fallbackHint"></span></label>
+        <label data-i18n="ignoreLabel"></label>
+        <textarea id="s-ignore" rows="6" spellcheck="false"></textarea>
+        <span></span><span class="muted small" data-i18n="ignoreHint"></span>
+        <label data-i18n="selfReview"></label>
+        <label class="chk"><input id="s-review" type="checkbox"><span data-i18n="selfReviewHint"></span></label>
+      </div>
+      <div class="actions"><button id="s-save" class="btn primary" data-i18n="save"></button><button id="s-test" class="btn" data-i18n="test"></button><span id="s-msg" class="msg"></span></div>
+      <p class="muted" data-i18n="offlineHint"></p>
+    </div>
+  </section>
+</main>
+<dialog id="dlg"><form method="dialog"><h3 id="dlgTitle"></h3><p id="dlgText"></p>
+  <div class="dlgbtns"><button id="dlgCancel" class="btn" value="cancel"></button><button id="dlgOk" class="btn primary" value="ok"></button></div></form></dialog>
+<script src="i18n.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>
